@@ -9,7 +9,24 @@ import SwiftUI
 
 struct PlayerTrackerView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            
+            
+            HStack{
+                VStack{
+                    Text("Ajax Knights")
+                        .font(Font.custom("MarkerFelt-Thin", size: 50))
+                        .padding()
+                    
+                }
+                
+                Spacer()
+                Text("Opponent")
+                    .font(Font.custom("MarkerFelt-Thin", size: 50))
+                    .padding()
+            }
+            Spacer()
+        }
     }
 }
 
