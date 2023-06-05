@@ -11,7 +11,7 @@ import SwiftUI
 struct PlayerTrackerApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            PlayerTrackerView()
         }
     }
 }
