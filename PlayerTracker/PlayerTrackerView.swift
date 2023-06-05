@@ -9,40 +9,81 @@ import SwiftUI
 
 struct PlayerTrackerView: View {
     var body: some View {
-        VStack{
-            
-            
-            HStack{
-                VStack{
-                    Text("Ajax Knights")
-                        .font(Font.custom("MarkerFelt-Thin", size: 50))
+        ZStack{
+            VStack{
+                HStack{
+                    Button(action: {
+                        
+                    }) {
+                        Text("GOAL")
+                            .font(Font.custom("MarkerFelt-Thin", size: 50))
+                        
+                            .foregroundColor(.white)
+                            .padding()
+                        
+                            .background(Color.green)
+                            .cornerRadius(10)
+                            .padding()
+                    }
+                    Text("1-0")
+                        .font(Font.custom("MarkerFelt-Thin", size: 100))
                         .padding()
-                    
-                }
-                
-                Spacer()
-                Text("Opponent")
-                    .font(Font.custom("MarkerFelt-Thin", size: 50))
-                    .padding()
-            }
-            HStack{
-                Button(action: {
-                    
-                }) {
-                    Text("Change Team Name")
-                        .font(Font.custom("MarkerFelt-Thin", size: 20))
+                    Text("GOAL")
+                        .font(Font.custom("MarkerFelt-Thin", size: 50))
                     
                         .foregroundColor(.white)
                         .padding()
                     
-                        .background(Color.gray)
+                        .background(Color.green)
                         .cornerRadius(10)
                         .padding()
+                        
+                }
+                
+                Spacer()
+            }
+            VStack{
+                
+                
+                HStack{
+                    VStack{
+                        Text("Ajax Knights")
+                            .font(Font.custom("MarkerFelt-Thin", size: 50))
+                            .padding()
+                            
+                            .border(Color.red, width: 10)
+                            .padding()
+                            
+                        
+                    }
+                    
+                    Spacer()
+                    Text("Opponent")
+                        .font(Font.custom("MarkerFelt-Thin", size: 50))
+                        .padding()
+                        
+                        .border(Color.red, width: 10)
+                        .padding()
+                }
+                HStack{
+                    Button(action: {
+                        
+                    }) {
+                        Text("Change Team Name")
+                            .font(Font.custom("MarkerFelt-Thin", size: 20))
+                        
+                            .foregroundColor(.white)
+                            .padding()
+                        
+                            .background(Color.gray)
+                            .cornerRadius(10)
+                            .padding()
+                    }
+                    Spacer()
+                    
                 }
                 Spacer()
-                
             }
-            Spacer()
         }
     }
 }
