@@ -25,6 +25,23 @@ struct PlayerTrackerView: View {
                     .font(Font.custom("MarkerFelt-Thin", size: 50))
                     .padding()
             }
+            HStack{
+                Button(action: {
+                    
+                }) {
+                    Text("Change Team Name")
+                        .font(Font.custom("MarkerFelt-Thin", size: 20))
+                    
+                        .foregroundColor(.white)
+                        .padding()
+                    
+                        .background(Color.gray)
+                        .cornerRadius(10)
+                        .padding()
+                }
+                Spacer()
+                
+            }
             Spacer()
         }
     }
