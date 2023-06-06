@@ -38,15 +38,19 @@ struct PlayerTrackerView: View {
                     Text("1-0")
                         .font(Font.custom("MarkerFelt-Thin", size: 100))
                         .padding()
-                    Text("GOAL")
-                        .font(Font.custom("MarkerFelt-Thin", size: 50))
-                    
-                        .foregroundColor(.white)
-                        .padding()
-                    
-                        .background(Color.green)
-                        .cornerRadius(10)
-                        .padding()
+                    Button(action: {
+                        
+                    }) {
+                        Text("GOAL")
+                            .font(Font.custom("MarkerFelt-Thin", size: 50))
+                        
+                            .foregroundColor(.white)
+                            .padding()
+                        
+                            .background(Color.green)
+                            .cornerRadius(10)
+                            .padding()
+                    }
                     
                 }
                 
