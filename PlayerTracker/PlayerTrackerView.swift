@@ -8,6 +8,13 @@
 import SwiftUI
 
 struct PlayerTrackerView: View {
+    let columns = [
+            GridItem(.flexible()),
+            GridItem(.flexible()),
+            GridItem(.flexible()),
+            GridItem(.flexible())
+        ]
+
     var body: some View {
         ZStack{
             VStack{
@@ -37,23 +44,39 @@ struct PlayerTrackerView: View {
                         .background(Color.green)
                         .cornerRadius(10)
                         .padding()
-                        
+                    
                 }
                 
                 Spacer()
-            }
+                
+                    ScrollView {
+                        LazyVGrid(columns: columns, spacing: 16) {
+                            ForEach(0..<30) { index in
+                                RoundedRectangle(cornerRadius: 20)
+                                    .foregroundColor(.gray)
+                                    .frame(height: 200)
+                                    
+                            }
+                            
+                        }
+                        
+                        
+                        
+                    }
+                    .padding(50)
+                
+                
+                }
             VStack{
-                
-                
                 HStack{
                     VStack{
                         Text("Ajax Knights")
                             .font(Font.custom("MarkerFelt-Thin", size: 50))
                             .padding()
-                            
+                        
                             .border(Color.red, width: 10)
-                            .padding()
-                            
+                            .padding(.leading)
+                        
                         
                     }
                     
@@ -61,7 +84,7 @@ struct PlayerTrackerView: View {
                     Text("Opponent")
                         .font(Font.custom("MarkerFelt-Thin", size: 50))
                         .padding()
-                        
+                    
                         .border(Color.red, width: 10)
                         .padding()
                 }
@@ -73,20 +96,21 @@ struct PlayerTrackerView: View {
                             .font(Font.custom("MarkerFelt-Thin", size: 20))
                         
                             .foregroundColor(.white)
-                            .padding()
+                            .padding(10)
                         
-                            .background(Color.gray)
+                            .background(Color.blue)
                             .cornerRadius(10)
-                            .padding()
+                            .padding(.leading)
                     }
                     Spacer()
                     
                 }
                 Spacer()
             }
+            
         }
-    }
-}
+        }
+        }
 
 struct PlayerTrackerView_Previews: PreviewProvider {
     static var previews: some View {
