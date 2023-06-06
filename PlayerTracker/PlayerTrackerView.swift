@@ -9,6 +9,13 @@ import SwiftUI
 import Blackbird
 
 struct PlayerTrackerView: View {
+//MARK: STORED PROPERTIES
+    
+    @State var score = 0
+    @State var oscore = 0
+    @State var plmi = 0
+    @State var tName = ""
+    
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible()),
@@ -18,7 +25,7 @@ struct PlayerTrackerView: View {
         try await Player.read(from:db)
     })var Players
     
-    
+    //MARK: COMPUTED PROPERTIES
     
     var body: some View {
         
@@ -27,7 +34,8 @@ struct PlayerTrackerView: View {
             
             VStack{
                 HStack{
-                    Button(action: {
+                    Button(action: {score += 1
+                        plmi += 1
                         
                     }) {
                         Text("GOAL")
@@ -40,10 +48,11 @@ struct PlayerTrackerView: View {
                             .cornerRadius(10)
                             .padding()
                     }
-                    Text("1-0")
+                    Text("\(score)-\(oscore)")
                         .font(Font.custom("MarkerFelt-Thin", size: 100))
                         .padding()
-                    Button(action: {
+                    Button(action: {oscore += 1
+                        plmi += -1
                         
                     }) {
                         Text("GOAL")
@@ -79,7 +88,9 @@ struct PlayerTrackerView: View {
                 }
                             .padding(40)
                             
-                            Button(action: {
+                            Button(action: {score = 0
+                                oscore = 0
+                                plmi = 0
                                 
                             }) {
                                 Text("Game End")
