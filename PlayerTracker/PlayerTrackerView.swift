@@ -12,6 +12,9 @@ struct PlayerTrackerView: View {
             GridItem(.flexible()),
             GridItem(.flexible()),
             GridItem(.flexible()),
+            GridItem(.flexible()),
+            GridItem(.flexible()),
+            GridItem(.flexible()),
             GridItem(.flexible())
         ]
 
@@ -63,9 +66,18 @@ struct PlayerTrackerView: View {
                         
                         
                     }
-                    .padding(50)
+                    .padding(40)
                 
-                
+                VStack {
+                                Text("Game End")
+                                    .font(Font.custom("MarkerFelt-Thin", size: 30))
+                                    .foregroundColor(.white)
+                                    .padding()
+                            }
+                            .background(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .foregroundColor(.red)
+                                )
                 }
             VStack{
                 HStack{
