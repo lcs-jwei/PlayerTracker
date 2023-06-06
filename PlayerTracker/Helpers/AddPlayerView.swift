@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import Blackbird
 
 struct AddPlayerView: View {
 //MARK: STORED PROPERTIES
     
+    @Environment(\.blackbirdDatabase) var db:Blackbird.Database?
+    
     @State var name = ""
-    @State var number = 3
+    @State var number = 00
     @State var plusminus = 3
     @State var time = ""
     
@@ -38,7 +41,7 @@ struct AddPlayerView: View {
                 .border(.blue, width:10)
                 .padding()
             
-            TextField("eg. 34", text:$name)
+            TextField("eg. 34", value:$number, format:.number)
                 .textFieldStyle(.roundedBorder)
                 .font(Font.custom("MarkerFelt-Thin", size: 30))
                 .padding()
@@ -48,6 +51,34 @@ struct AddPlayerView: View {
             
             
         }
+        .toolbar {
+                     ToolbarItem(placement: .primaryAction) {
+                         Button(action: {
+                             // Write to database
+                             Task {
+                                 try await db!.transaction { core in
+                                     try core.query("""
+                                                 INSERT INTO movie (
+                                                     name,
+                                                     number
+                                                 )
+                                                 VALUES (
+                                                     (?),
+                                                     (?)
+                                                 )
+                                                 """,
+                                                 name,
+                                                 number)
+                                 }
+                                 // Reset input fields after writing to database
+                                 name = ""
+                                 number = 00
+                             }
+                         }, label: {
+                             Text("Add")
+                         })
+                     }
+                 }
     }
 }
 
@@ -55,5 +86,6 @@ struct AddPlayerView_Previews: PreviewProvider {
     static var previews: some View {
         AddPlayerView()
             .previewInterfaceOrientation(.landscapeLeft)
+            .environment(\.blackbirdDatabase, AppDatabase.instance)
     }
 }
