@@ -52,33 +52,36 @@ struct PlayerTrackerView: View {
                 
                 Spacer()
                 
-                    ScrollView {
-                        LazyVGrid(columns: columns, spacing: 16) {
-                            ForEach(0..<30) { index in
-                                RoundedRectangle(cornerRadius: 20)
-                                    .foregroundColor(.gray)
-                                    .frame(height: 200)
-                                    
-                            }
+                ScrollView {
+                    LazyVGrid(columns: columns, spacing: 16) {
+                        ForEach(0..<30) { index in
+                            RoundedRectangle(cornerRadius: 20)
+                                .foregroundColor(.gray)
+                                .frame(height: 200)
                             
                         }
                         
-                        
-                        
                     }
-                    .padding(40)
-                
-                VStack {
-                                Text("Game End")
-                                    .font(Font.custom("MarkerFelt-Thin", size: 30))
-                                    .foregroundColor(.white)
-                                    .padding()
-                            }
-                            .background(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .foregroundColor(.red)
-                                )
+                    
+                    
+                    
                 }
+                .padding(40)
+                
+                Button(action: {
+                    
+                }) {
+                    Text("Game End")
+                        .font(Font.custom("MarkerFelt-Thin", size: 30))
+                    
+                        .foregroundColor(.white)
+                        .padding()
+                    
+                        .background(Color.red)
+                        .cornerRadius(10)
+                        .padding()
+                }
+            }
             VStack{
                 HStack{
                     VStack{
