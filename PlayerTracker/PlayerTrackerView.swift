@@ -6,16 +6,20 @@
 //
 
 import SwiftUI
+import Blackbird
 
 struct PlayerTrackerView: View {
     let columns = [
             GridItem(.flexible()),
             GridItem(.flexible()),
-            GridItem(.flexible()),
-            GridItem(.flexible()),
-            GridItem(.flexible()),
             GridItem(.flexible())
         ]
+    @BlackbirdLiveModels({db in
+        try await Player.read(from:db)
+        
+    })var Players
+    
+   
 
     var body: some View {
         ZStack{
@@ -54,39 +58,14 @@ struct PlayerTrackerView: View {
                 }
                 
                 Spacer()
-                
-                ScrollView {
-                    LazyVGrid(columns: columns, spacing: 16) {
-                        ForEach(0..<100) { i in
-                            Button(action: {
-                                
-                            }) {
-                                VStack{
-                                    Image(systemName:"person")
-                                    
-                                        .foregroundColor(.white)
-                                        .padding()
-                                    
-                                        .background(RoundedRectangle(cornerRadius: 20)
-                                            .foregroundColor(.gray)
-                                            .frame(height: 200))
-                                        .cornerRadius(10)
-                                        .padding()
-                                    
-                                }
-                                
-                            }
-                            
-                            
-                        }
-                        
-                        
-                    }
-                    
-                    
-                    
+                List(Players.results){currentPlayer in
+                    PlayerView(name: currentPlayer.name,
+                               number: currentPlayer.number,
+                               plusminus: currentPlayer.plusminus,
+                               time: currentPlayer.time
+                               )
                 }
-                .padding(40)
+                    .padding(40)
                 
                 Button(action: {
                     

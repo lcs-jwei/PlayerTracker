@@ -22,42 +22,43 @@ struct AddPlayerView: View {
     
     //MARK: COMPUTED PROPERTIES
     var body: some View {
-        VStack{
-            Text("Player Name")
-                .font(Font.custom("MarkerFelt-Thin", size: 30))
-                .padding()
-                .border(.blue, width:10)
-                .padding()
-            
-            TextField("Enter player name (First, last)", text:$name)
-                .textFieldStyle(.roundedBorder)
-                .font(Font.custom("MarkerFelt-Thin", size: 30))
-                .padding()
-                .border(.blue, width:10)
-                .padding()
-            Text("Player Number")
-                .font(Font.custom("MarkerFelt-Thin", size: 30))
-                .padding()
-                .border(.blue, width:10)
-                .padding()
-            
-            TextField("eg. 34", value:$number, format:.number)
-                .textFieldStyle(.roundedBorder)
-                .font(Font.custom("MarkerFelt-Thin", size: 30))
-                .padding()
-                .border(.blue, width:10)
-                .padding()
-            
-            
-            
-        }
-        .toolbar {
-                     ToolbarItem(placement: .primaryAction) {
-                         Button(action: {
-                             // Write to database
-                             Task {
-                                 try await db!.transaction { core in
-                                     try core.query("""
+        NavigationView{
+            VStack{
+                Text("Player Name")
+                    .font(Font.custom("MarkerFelt-Thin", size: 30))
+                    .padding()
+                    .border(.blue, width:10)
+                    .padding()
+                
+                TextField("Enter player name (First, last)", text:$name)
+                    .textFieldStyle(.roundedBorder)
+                    .font(Font.custom("MarkerFelt-Thin", size: 30))
+                    .padding()
+                    .border(.blue, width:10)
+                    .padding()
+                Text("Player Number")
+                    .font(Font.custom("MarkerFelt-Thin", size: 30))
+                    .padding()
+                    .border(.blue, width:10)
+                    .padding()
+                
+                TextField("eg. 34", value:$number, format:.number)
+                    .textFieldStyle(.roundedBorder)
+                    .font(Font.custom("MarkerFelt-Thin", size: 30))
+                    .padding()
+                    .border(.blue, width:10)
+                    .padding()
+                
+                
+                
+            }
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Button(action: {
+                        // Write to database
+                        Task {
+                            try await db!.transaction { core in
+                                try core.query("""
                                                  INSERT INTO movie (
                                                      name,
                                                      number
@@ -67,18 +68,21 @@ struct AddPlayerView: View {
                                                      (?)
                                                  )
                                                  """,
-                                                 name,
-                                                 number)
-                                 }
-                                 // Reset input fields after writing to database
-                                 name = ""
-                                 number = 00
-                             }
-                         }, label: {
-                             Text("Add")
-                         })
-                     }
-                 }
+                                               name,
+                                               number)
+                            }
+                            // Reset input fields after writing to database
+                            name = ""
+                            number = 00
+                        }
+                    }, label: {
+                        Text("Add")
+                        //Label("Add", systemName:"plus.circle.fill")
+                        
+                    })
+                }
+            }
+        }
     }
 }
 
