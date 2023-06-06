@@ -16,6 +16,7 @@
 		DF33D09F2A2FB4EF000E7B77 /* Blackbird in Frameworks */ = {isa = PBXBuildFile; productRef = DF33D09E2A2FB4EF000E7B77 /* Blackbird */; };
 		DF33D0A12A2FB528000E7B77 /* AppDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF33D0A02A2FB528000E7B77 /* AppDatabase.swift */; };
 		DF33D0A32A2FB583000E7B77 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF33D0A22A2FB583000E7B77 /* Player.swift */; };
+		DF33D0A52A2FD910000E7B77 /* AddPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF33D0A42A2FD910000E7B77 /* AddPlayerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		DF33D09B2A2FB39F000E7B77 /* db.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = db.sqlite; path = "computer science/PlayerTracker/PlayerTracker/Model/db.sqlite"; sourceTree = "<group>"; };
 		DF33D0A02A2FB528000E7B77 /* AppDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDatabase.swift; sourceTree = "<group>"; };
 		DF33D0A22A2FB583000E7B77 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		DF33D0A42A2FD910000E7B77 /* AddPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlayerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				DF33D0962A2F88ED000E7B77 /* PlayerView.swift */,
+				DF33D0A42A2FD910000E7B77 /* AddPlayerView.swift */,
 				DF33D0A02A2FB528000E7B77 /* AppDatabase.swift */,
 			);
 			path = Helpers;
@@ -183,6 +186,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF33D0972A2F88ED000E7B77 /* PlayerView.swift in Sources */,
+				DF33D0A52A2FD910000E7B77 /* AddPlayerView.swift in Sources */,
 				DF33D0912A2E1A88000E7B77 /* PlayerTrackerView.swift in Sources */,
 				DF33D0A12A2FB528000E7B77 /* AppDatabase.swift in Sources */,
 				DF33D0A32A2FB583000E7B77 /* Player.swift in Sources */,
