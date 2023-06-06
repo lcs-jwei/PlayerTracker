@@ -11,6 +11,7 @@
 		DF33D0872A2E1A6D000E7B77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF33D0862A2E1A6D000E7B77 /* Assets.xcassets */; };
 		DF33D08A2A2E1A6D000E7B77 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF33D0892A2E1A6D000E7B77 /* Preview Assets.xcassets */; };
 		DF33D0912A2E1A88000E7B77 /* PlayerTrackerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF33D0902A2E1A88000E7B77 /* PlayerTrackerView.swift */; };
+		DF33D0952A2F8898000E7B77 /* db.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = DF33D0942A2F8898000E7B77 /* db.sqlite */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		DF33D0862A2E1A6D000E7B77 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DF33D0892A2E1A6D000E7B77 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DF33D0902A2E1A88000E7B77 /* PlayerTrackerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTrackerView.swift; sourceTree = "<group>"; };
+		DF33D0942A2F8898000E7B77 /* db.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = db.sqlite; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +54,7 @@
 			isa = PBXGroup;
 			children = (
 				DF33D0822A2E1A6B000E7B77 /* PlayerTrackerApp.swift */,
+				DF33D0932A2F86F3000E7B77 /* Model */,
 				DF33D0922A2E1A8F000E7B77 /* Views */,
 				DF33D0902A2E1A88000E7B77 /* PlayerTrackerView.swift */,
 				DF33D0862A2E1A6D000E7B77 /* Assets.xcassets */,
@@ -73,6 +76,14 @@
 			children = (
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		DF33D0932A2F86F3000E7B77 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DF33D0942A2F8898000E7B77 /* db.sqlite */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -134,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF33D08A2A2E1A6D000E7B77 /* Preview Assets.xcassets in Resources */,
+				DF33D0952A2F8898000E7B77 /* db.sqlite in Resources */,
 				DF33D0872A2E1A6D000E7B77 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
