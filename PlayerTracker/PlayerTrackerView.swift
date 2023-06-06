@@ -151,5 +151,6 @@ struct PlayerTrackerView_Previews: PreviewProvider {
     static var previews: some View {
         PlayerTrackerView()
             .previewInterfaceOrientation(.landscapeLeft)
+            .environment(\.blackbirdDatabase, AppDatabase.instance)
     }
 }
