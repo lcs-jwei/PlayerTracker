@@ -14,7 +14,6 @@ struct PlayerTrackerView: View {
             GridItem(.flexible()),
             GridItem(.flexible()),
             GridItem(.flexible()),
-            GridItem(.flexible()),
             GridItem(.flexible())
         ]
 
@@ -58,12 +57,29 @@ struct PlayerTrackerView: View {
                 
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 16) {
-                        ForEach(0..<30) { index in
-                            RoundedRectangle(cornerRadius: 20)
-                                .foregroundColor(.gray)
-                                .frame(height: 200)
+                        ForEach(0..<100) { i in
+                            Button(action: {
+                                
+                            }) {
+                                VStack{
+                                    Image(systemName:"person")
+                                    
+                                        .foregroundColor(.white)
+                                        .padding()
+                                    
+                                        .background(RoundedRectangle(cornerRadius: 20)
+                                            .foregroundColor(.gray)
+                                            .frame(height: 200))
+                                        .cornerRadius(10)
+                                        .padding()
+                                    
+                                }
+                                
+                            }
+                            
                             
                         }
+                        
                         
                     }
                     
@@ -134,5 +150,6 @@ struct PlayerTrackerView: View {
 struct PlayerTrackerView_Previews: PreviewProvider {
     static var previews: some View {
         PlayerTrackerView()
+            .previewInterfaceOrientation(.landscapeLeft)
     }
 }
