@@ -13,6 +13,9 @@
 		DF33D0912A2E1A88000E7B77 /* PlayerTrackerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF33D0902A2E1A88000E7B77 /* PlayerTrackerView.swift */; };
 		DF33D0972A2F88ED000E7B77 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF33D0962A2F88ED000E7B77 /* PlayerView.swift */; };
 		DF33D09C2A2FB39F000E7B77 /* db.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = DF33D09B2A2FB39F000E7B77 /* db.sqlite */; };
+		DF33D09F2A2FB4EF000E7B77 /* Blackbird in Frameworks */ = {isa = PBXBuildFile; productRef = DF33D09E2A2FB4EF000E7B77 /* Blackbird */; };
+		DF33D0A12A2FB528000E7B77 /* AppDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF33D0A02A2FB528000E7B77 /* AppDatabase.swift */; };
+		DF33D0A32A2FB583000E7B77 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF33D0A22A2FB583000E7B77 /* Player.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +26,8 @@
 		DF33D0902A2E1A88000E7B77 /* PlayerTrackerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTrackerView.swift; sourceTree = "<group>"; };
 		DF33D0962A2F88ED000E7B77 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		DF33D09B2A2FB39F000E7B77 /* db.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = db.sqlite; path = "computer science/PlayerTracker/PlayerTracker/Model/db.sqlite"; sourceTree = "<group>"; };
+		DF33D0A02A2FB528000E7B77 /* AppDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDatabase.swift; sourceTree = "<group>"; };
+		DF33D0A22A2FB583000E7B77 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -30,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF33D09F2A2FB4EF000E7B77 /* Blackbird in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +83,7 @@
 		DF33D0922A2E1A8F000E7B77 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DF33D0A22A2FB583000E7B77 /* Player.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -93,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				DF33D0962A2F88ED000E7B77 /* PlayerView.swift */,
+				DF33D0A02A2FB528000E7B77 /* AppDatabase.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -113,6 +121,9 @@
 			dependencies = (
 			);
 			name = PlayerTracker;
+			packageProductDependencies = (
+				DF33D09E2A2FB4EF000E7B77 /* Blackbird */,
+			);
 			productName = PlayerTracker;
 			productReference = DF33D07F2A2E1A6B000E7B77 /* PlayerTracker.app */;
 			productType = "com.apple.product-type.application";
@@ -141,6 +152,9 @@
 				Base,
 			);
 			mainGroup = DF33D0762A2E1A6B000E7B77;
+			packageReferences = (
+				DF33D09D2A2FB4EF000E7B77 /* XCRemoteSwiftPackageReference "Blackbird" */,
+			);
 			productRefGroup = DF33D0802A2E1A6B000E7B77 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -170,6 +184,8 @@
 			files = (
 				DF33D0972A2F88ED000E7B77 /* PlayerView.swift in Sources */,
 				DF33D0912A2E1A88000E7B77 /* PlayerTrackerView.swift in Sources */,
+				DF33D0A12A2FB528000E7B77 /* AppDatabase.swift in Sources */,
+				DF33D0A32A2FB583000E7B77 /* Player.swift in Sources */,
 				DF33D0832A2E1A6B000E7B77 /* PlayerTrackerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -369,6 +385,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DF33D09D2A2FB4EF000E7B77 /* XCRemoteSwiftPackageReference "Blackbird" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/marcoarment/Blackbird";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DF33D09E2A2FB4EF000E7B77 /* Blackbird */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DF33D09D2A2FB4EF000E7B77 /* XCRemoteSwiftPackageReference "Blackbird" */;
+			productName = Blackbird;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DF33D0772A2E1A6B000E7B77 /* Project object */;
 }

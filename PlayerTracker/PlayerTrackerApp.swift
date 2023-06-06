@@ -12,6 +12,7 @@ struct PlayerTrackerApp: App {
     var body: some Scene {
         WindowGroup {
             PlayerTrackerView()
+                .environment(\.blackbirdDatabase, AppDatabase.instance)
         }
     }
 }
