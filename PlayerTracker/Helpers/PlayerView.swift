@@ -27,12 +27,7 @@ struct PlayerView: View {
     
     //MARK: COMPUTED PROPERTIES
     var body: some View {
-        ScrollView {
-            LazyVGrid(columns: columns, spacing: 16) {
-                ForEach(0..<100) { i in
-                    Button(action: {
-                        
-                    }) {
+        
                         VStack{
                             HStack{
                                 VStack{
@@ -95,7 +90,7 @@ struct PlayerView: View {
                         .background(RoundedRectangle(cornerRadius: 20)
                             .foregroundColor(.mint))
                             
-                        }
+                        
                         
                     }
                     
@@ -103,14 +98,14 @@ struct PlayerView: View {
                 }
                 
                 
-            }
             
             
             
-        }
+            
+        
 
      
-    }
+    
 
 
 struct PlayerView_Previews: PreviewProvider {
