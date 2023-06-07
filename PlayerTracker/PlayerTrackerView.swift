@@ -84,8 +84,11 @@ struct PlayerTrackerView: View {
                                            
                                 )
                             }
+                            
                         }
+                        
                     }
+                        
                     .toolbar {
                         ToolbarItem(placement: .bottomBar) {
                             Button(action: {
@@ -93,7 +96,7 @@ struct PlayerTrackerView: View {
                             }, label: {
                                 HStack{
                                     Image(systemName: "person.circle")
-                                    Text("Add Player")
+                                    Text("Add/remove Player")
                                         
                                 }.padding()
                                     .background(Color.blue)

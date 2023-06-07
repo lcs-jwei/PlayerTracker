@@ -83,7 +83,7 @@ struct AddPlayerView: View {
                     })
                 }
             }
-        }
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
