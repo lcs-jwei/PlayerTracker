@@ -14,8 +14,9 @@ struct PlayerTrackerView: View {
     @State var score = 0
     @State var oscore = 0
     @State var plmi = 0
-    @State var tName = "Team Name"
+    @State var tName = "Your Team"
     @State var showingAddPlayerView = false
+    @State var showingChangeNameView = false
     
     let columns = [
         GridItem(.flexible()),
@@ -128,9 +129,11 @@ struct PlayerTrackerView: View {
                     }
                 }
                 VStack{
+                    
                     HStack{
+                        
                         VStack{
-                            Text("Ajax Knights")
+                            Text("\(tName)")
                                 .font(Font.custom("MarkerFelt-Thin", size: 50))
                                 .padding()
                             
@@ -139,6 +142,7 @@ struct PlayerTrackerView: View {
                             
                             
                         }
+                        
                         
                         Spacer()
                         Text("Opponent")
@@ -150,24 +154,28 @@ struct PlayerTrackerView: View {
                     }
                     HStack{
                         Button(action: {
-                            
-                        }) {
-                            Text("Change Team Name")
-                                .font(Font.custom("MarkerFelt-Thin", size: 20))
-                            
-                                .foregroundColor(.white)
-                                .padding(10)
-                            
+                            showingChangeNameView = true
+                        }, label: {
+                            HStack{
+                                Image(systemName: "person.3.fill")
+                                Text("Change Team Name")
+                                    
+                            }.padding()
                                 .background(Color.blue)
                                 .cornerRadius(10)
-                                .padding(.leading)
-                        }
-                        Spacer()
+                                .foregroundColor(.white)
+                        })
+                        .sheet(isPresented: $showingChangeNameView) {
+                            NameChangeView()
+                                .presentationDetents([.fraction(0.3)])
                         
+                        }.padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 0))
+                        Spacer()
                     }
                     Spacer()
                     
                 }
+                
             }
         }.navigationViewStyle(StackNavigationViewStyle())
     }
