@@ -13,7 +13,7 @@ struct PlayerTrackerView: View {
     
     @State var score = 0
     @State var oscore = 0
-    @State var plmi = 0
+    @AppStorage("plusminus") var plmi = 0
     @AppStorage("teamname") var tName = ""
     @State var showingAddPlayerView = false
     @State var showingChangeNameView = false
@@ -79,8 +79,7 @@ struct PlayerTrackerView: View {
                             ForEach(Players.results){currentPlayer in
                                 PlayerView(name: currentPlayer.name,
                                            number: currentPlayer.number,
-                                           plusminus: currentPlayer.plusminus,
-                                           time: currentPlayer.time
+                                           time: currentPlayer.time, plusminus: currentPlayer.plusminus
                                            
                                 )
                             }

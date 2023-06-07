@@ -22,10 +22,10 @@ struct PlayerView: View {
     
     let name: String
     let number: Int
-    let plusminus: Int
     let time: String
     
     @State var isSelected = false
+    @AppStorage("plusminus") var plusminus = 0
     
     //MARK: COMPUTED PROPERTIES
     var body: some View {
@@ -119,6 +119,6 @@ struct PlayerView: View {
 
 struct PlayerView_Previews: PreviewProvider {
     static var previews: some View {
-        PlayerView(name: "Johnny Johnson", number: 35, plusminus: 5, time: "15m 32s")
+        PlayerView(name: "Johnny Johnson", number: 35, time: "15m 32s", plusminus: 4)
     }
 }
