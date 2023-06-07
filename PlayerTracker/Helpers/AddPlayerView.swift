@@ -11,7 +11,8 @@ import Blackbird
 struct AddPlayerView: View {
 //MARK: STORED PROPERTIES
     
-    @Environment(\.blackbirdDatabase) var db:Blackbird.Database?
+    @Environment(\.blackbirdDatabase) var db: Blackbird.Database?
+    
     
     @State var name = ""
     @State var number = 00
@@ -59,7 +60,7 @@ struct AddPlayerView: View {
                         Task {
                             try await db!.transaction { core in
                                 try core.query("""
-                                                 INSERT INTO movie (
+                                                 INSERT INTO Player (
                                                      name,
                                                      number
                                                  )
@@ -73,7 +74,7 @@ struct AddPlayerView: View {
                             }
                             // Reset input fields after writing to database
                             name = ""
-                            number = 00
+                            number = 0
                         }
                     }, label: {
                         Text("Add")

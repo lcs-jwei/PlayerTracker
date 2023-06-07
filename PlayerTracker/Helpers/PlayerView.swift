@@ -34,7 +34,7 @@ struct PlayerView: View {
                                     Image(systemName:"person")
                                         .resizable()
                                         .scaledToFit()
-                                        .frame(maxWidth: 50)
+                                        .frame(maxWidth: 30)
                                         .padding(EdgeInsets(top: 10, leading: 10, bottom: 0, trailing: 0))
                                         .foregroundColor(.white)
                                     
@@ -42,7 +42,7 @@ struct PlayerView: View {
                                         .padding(5)
                                         
                                     Text("#\(number)")
-                                        .font(Font.custom("MarkerFelt-Thin", size: 30))
+                                        .font(Font.custom("MarkerFelt-Thin", size: 20))
                                         .foregroundColor(.white)
                                         .padding(.bottom)
                                 }

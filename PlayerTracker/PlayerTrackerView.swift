@@ -14,17 +14,19 @@ struct PlayerTrackerView: View {
     @State var score = 0
     @State var oscore = 0
     @State var plmi = 0
-    @State var tName = "Your Team"
+    @AppStorage("teamname") var tName = ""
     @State var showingAddPlayerView = false
     @State var showingChangeNameView = false
     
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible()),
-        GridItem(.flexible())
+        GridItem(.flexible()),
+        GridItem(.flexible()),
+        GridItem(.flexible()),
     ]
     @BlackbirdLiveModels({db in
-        try await Player.read(from:db)
+        try await Player.read(from: db)
     })var Players
     
     //MARK: COMPUTED PROPERTIES
@@ -33,6 +35,7 @@ struct PlayerTrackerView: View {
         NavigationView{
             
             ZStack{
+                
                 
                 
                 VStack{
@@ -73,22 +76,15 @@ struct PlayerTrackerView: View {
                     
                     ScrollView {
                         LazyVGrid(columns: columns, spacing: 16) {
-                            ForEach(0..<100) { i in
-                                Button(action: {
-                                    
-                                }){
-                                    List(Players.results){currentPlayer in
-                                        PlayerView(name: currentPlayer.name,
-                                                   number: currentPlayer.number,
-                                                   plusminus: currentPlayer.plusminus,
-                                                   time: currentPlayer.time
-                                                   
-                                        )
-                                    }
-                                }
+                            ForEach(Players.results){currentPlayer in
+                                PlayerView(name: currentPlayer.name,
+                                           number: currentPlayer.number,
+                                           plusminus: currentPlayer.plusminus,
+                                           time: currentPlayer.time
+                                           
+                                )
                             }
                         }
-                        
                     }
                     .toolbar {
                         ToolbarItem(placement: .bottomBar) {

@@ -87,7 +87,6 @@
 		DF33D0922A2E1A8F000E7B77 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				DF33D0A22A2FB583000E7B77 /* Player.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -96,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				DF33D09B2A2FB39F000E7B77 /* db.sqlite */,
+				DF33D0A22A2FB583000E7B77 /* Player.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
