@@ -12,19 +12,35 @@ struct NameChangeView: View {
     @State var tName = ""
     
     var body: some View {
-        VStack{
-            Text("Change Your Team Name")
-                .font(Font.custom("MarkerFelt-Thin", size: 30))
-                .padding()
-                .border(.blue, width:10)
-                .padding()
-            
-            TextField("Enter team name", text:$tName)
-                .textFieldStyle(.roundedBorder)
-                .font(Font.custom("MarkerFelt-Thin", size: 30))
-                .padding()
-                .border(.blue, width:10)
-                .padding()
+        NavigationView{
+            VStack{
+                Text("Change Your Team Name")
+                    .font(Font.custom("MarkerFelt-Thin", size: 30))
+                    .padding()
+                    .border(.blue, width:10)
+                    .padding()
+                
+                TextField("Enter team name", text:$tName)
+                    .textFieldStyle(.roundedBorder)
+                    .font(Font.custom("MarkerFelt-Thin", size: 30))
+                    .padding()
+                    .border(.blue, width:10)
+                    .padding()
+            }
+            .toolbar {
+                ToolbarItem(placement: .automatic) {
+                    Button(action: {
+                        Task{
+                            tName = tName
+                        }
+                    }, label: {
+                        Text("Add")
+                        
+                        
+                    })
+                    
+                }
+            }
         }
     }
 }
