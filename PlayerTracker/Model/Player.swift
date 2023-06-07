@@ -15,5 +15,5 @@ struct Player: BlackbirdModel {
     @BlackbirdColumn var number: Int
     @BlackbirdColumn var time: String
     @BlackbirdColumn var plusminus: Int
-    
+    @BlackbirdColumn var isselected: Int
 }
