@@ -9,6 +9,7 @@ import SwiftUI
 import Blackbird
 
 struct PlayerView: View {
+    
     //MARK: STORED PROPERTIES
     let columns = [
             GridItem(.flexible()),
@@ -22,15 +23,30 @@ struct PlayerView: View {
     
     let name: String
     let number: Int
-    let time: String
     
-    @State var isSelected = false
-    @AppStorage("plusminus") var plusminus = 0
+    
+    @AppStorage ("isselected") var isSelected = false
+    @AppStorage("plusminus") var plmi = 0
+    @State var isPressed = false
+    @State var timer: Timer?
+    @State var elapsedTime = 0.0
+    
+    
     
     //MARK: COMPUTED PROPERTIES
     var body: some View {
         Button(action: {
             self.isSelected.toggle()
+            self.isPressed.toggle()
+            if isPressed {
+                                timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+                                    elapsedTime += 1
+                                }
+                            } else {
+                                timer?.invalidate()
+                                timer = nil
+                                elapsedTime = elapsedTime
+                            }
         }) {
             VStack{
                 HStack{
@@ -63,7 +79,7 @@ struct PlayerView: View {
                                 .font(Font.custom("MarkerFelt-Thin", size: 20))
                                 .padding(EdgeInsets(top: 10, leading: 10, bottom: 5, trailing: 10))                        .foregroundColor(.white)
                                 .border(.white)
-                            Text("\(plusminus)")
+                            Text("\(plmi)")
                                 .font(Font.custom("MarkerFelt-Thin", size: 20))
                                 .padding(EdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0))                        .foregroundColor(.white)
                             
@@ -76,7 +92,7 @@ struct PlayerView: View {
                                 .padding(EdgeInsets(top: 5, leading: 20, bottom: 5, trailing: 20))                        .foregroundColor(.white)
                                 .border(.white)
                                 
-                            Text(time)
+                            Text("\(formattedTime(elapsedTime))")
                                 .font(Font.custom("MarkerFelt-Thin", size: 20))
                                 .padding()
                                 .foregroundColor(.white)
@@ -92,8 +108,10 @@ struct PlayerView: View {
                 
                 
             }
+            
             .border(isSelected ? Color.green : Color.primary, width: 10)
                 .cornerRadius(20)
+                
             .background(RoundedRectangle(cornerRadius: 20)
                 .foregroundColor(Color.indigo))
         }
@@ -107,7 +125,12 @@ struct PlayerView: View {
                 }
                 
                 
-            
+func formattedTime(_ time: TimeInterval) -> String {
+    let minutes = Int(time) / 60
+    let seconds = Int(time) % 60
+    
+    return String(format: "%02d:%02d", minutes, seconds)
+}
             
             
             
@@ -119,6 +142,6 @@ struct PlayerView: View {
 
 struct PlayerView_Previews: PreviewProvider {
     static var previews: some View {
-        PlayerView(name: "Johnny Johnson", number: 35, time: "15m 32s", plusminus: 4)
+        PlayerView(name: "Johnny Johnson", number: 35, plmi: 4)
     }
 }

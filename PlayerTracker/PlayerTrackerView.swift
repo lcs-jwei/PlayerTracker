@@ -17,6 +17,10 @@ struct PlayerTrackerView: View {
     @AppStorage("teamname") var tName = ""
     @State var showingAddPlayerView = false
     @State var showingChangeNameView = false
+    @AppStorage ("isselected") var isSelected = false
+    @State var isPressed = false
+    @AppStorage ("elapsedtime") var elapsedTime = 0.0
+    
     
     let columns = [
         GridItem(.flexible()),
@@ -41,7 +45,13 @@ struct PlayerTrackerView: View {
                 VStack{
                     HStack{
                         Button(action: {score += 1
-                            plmi += 1
+                            if isSelected{
+                                
+                                self.plmi += 1
+                            }
+                            else{
+                                self.plmi += 0
+                            }
                             
                         }) {
                             Text("GOAL")
@@ -58,7 +68,12 @@ struct PlayerTrackerView: View {
                             .font(Font.custom("MarkerFelt-Thin", size: 100))
                             .padding()
                         Button(action: {oscore += 1
-                            plmi += -1
+                            if isSelected{
+                                
+                                self.plmi += -1
+                            }else{
+                                self.plmi += 0
+                            }
                             
                         }) {
                             Text("GOAL")
@@ -78,8 +93,7 @@ struct PlayerTrackerView: View {
                         LazyVGrid(columns: columns, spacing: 16) {
                             ForEach(Players.results){currentPlayer in
                                 PlayerView(name: currentPlayer.name,
-                                           number: currentPlayer.number,
-                                           time: currentPlayer.time, plusminus: currentPlayer.plusminus
+                                           number: currentPlayer.number, plmi: currentPlayer.plusminus
                                            
                                 )
                             }
@@ -113,7 +127,7 @@ struct PlayerTrackerView: View {
                     Button(action: {score = 0
                         oscore = 0
                         plmi = 0
-                        
+                        elapsedTime = 0.0
                     }) {
                         Text("Game End")
                             .font(Font.custom("MarkerFelt-Thin", size: 30))

@@ -11,6 +11,7 @@ struct NameChangeView: View {
     
     @AppStorage("teamname") var tName = ""
     
+    
     var body: some View {
         NavigationView{
             VStack{
