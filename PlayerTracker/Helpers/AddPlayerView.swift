@@ -16,7 +16,7 @@ struct AddPlayerView: View {
     
     @State var name = ""
     @State var number = 00
-    @State var plusminus = 3
+    @State var plusminus = 0
     @State var time = ""
     
     
@@ -62,15 +62,19 @@ struct AddPlayerView: View {
                                 try core.query("""
                                                  INSERT INTO Player (
                                                      name,
-                                                     number
+                                                     number,
+                                                     isselected,
+                                                     plusminus
                                                  )
                                                  VALUES (
+                                                     (?),
+                                                     (?),
                                                      (?),
                                                      (?)
                                                  )
                                                  """,
                                                name,
-                                               number)
+                                               number, 0, 0)
                             }
                             // Reset input fields after writing to database
                             name = ""

@@ -9,7 +9,7 @@ import SwiftUI
 import Blackbird
 
 struct PlayerView: View {
-    
+    @Environment(\.blackbirdDatabase) var db: Blackbird.Database?
     //MARK: STORED PROPERTIES
     let columns = [
             GridItem(.flexible()),
@@ -21,22 +21,43 @@ struct PlayerView: View {
         
     })var Players
     
-    let name: String
+    /*let name: String
     let number: Int
+    */
     
-    
-    @AppStorage ("isselected") var isSelected = false
+  
     @AppStorage("plusminus") var plmi = 0
     @State var isPressed = false
     @State var timer: Timer?
     @State var elapsedTime = 0.0
-    
+    @Binding var player: Player
     
     
     //MARK: COMPUTED PROPERTIES
     var body: some View {
         Button(action: {
-            self.isSelected.toggle()
+            if (player.isselected == 0
+            ){
+                Task {
+                    try await db!.transaction { core in
+                        try core.query("""
+                                         UPDATE Player
+                                           SET isselected = 1 WHERE id = (?)
+                                         """,
+                                       player.id)
+                    }
+                }
+            }else{
+                Task {
+                    try await db!.transaction { core in
+                        try core.query("""
+                                         UPDATE Player
+                                           SET isselected = 0 WHERE id = (?)
+                                         """,
+                                       player.id)
+                    }
+                }
+            }
             self.isPressed.toggle()
             if isPressed {
                                 timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
@@ -62,14 +83,14 @@ struct PlayerView: View {
                             .cornerRadius(10)
                             .padding(5)
                             
-                        Text("#\(number)")
+                        Text("#\(player.number)")
                             .font(Font.custom("MarkerFelt-Thin", size: 20))
                             .foregroundColor(.white)
                             .padding(.leading)
                     }
                     
                     VStack{
-                        Text(name)
+                        Text(player.name)
                             .font(Font.custom("MarkerFelt-Thin", size: 20))
                             .padding()
                             .foregroundColor(.white)
@@ -79,7 +100,7 @@ struct PlayerView: View {
                                 .font(Font.custom("MarkerFelt-Thin", size: 20))
                                 .padding(EdgeInsets(top: 10, leading: 10, bottom: 5, trailing: 10))                        .foregroundColor(.white)
                                 .border(.white)
-                            Text("\(plmi)")
+                            Text("\(player.plusminus)")
                                 .font(Font.custom("MarkerFelt-Thin", size: 20))
                                 .padding(EdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0))                        .foregroundColor(.white)
                             
@@ -107,9 +128,11 @@ struct PlayerView: View {
                     
                 
                 
+            }.onAppear{
+                elapsedTime = 0
             }
             
-            .border(isSelected ? Color.green : Color.primary, width: 10)
+            .border(isPressed ? Color.green : Color.primary, width: 10)
                 .cornerRadius(20)
                 
             .background(RoundedRectangle(cornerRadius: 20)
@@ -140,8 +163,9 @@ func formattedTime(_ time: TimeInterval) -> String {
     
 
 
-struct PlayerView_Previews: PreviewProvider {
+/*struct PlayerView_Previews: PreviewProvider {
     static var previews: some View {
-        PlayerView(name: "Johnny Johnson", number: 35, plmi: 4)
+        PlayerView(name: "Johnny Johnson", number: 35, plmi: 4, player: Player())
     }
 }
+*/

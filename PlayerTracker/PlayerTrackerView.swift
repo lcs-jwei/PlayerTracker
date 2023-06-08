@@ -10,7 +10,7 @@ import Blackbird
 
 struct PlayerTrackerView: View {
     //MARK: STORED PROPERTIES
-    
+    @Environment(\.blackbirdDatabase) var db: Blackbird.Database?
     @State var score = 0
     @State var oscore = 0
     @AppStorage("plusminus") var plmi = 0
@@ -20,6 +20,7 @@ struct PlayerTrackerView: View {
     @AppStorage ("isselected") var isSelected = false
     @State var isPressed = false
     @AppStorage ("elapsedtime") var elapsedTime = 0.0
+    @State var reset = false
     
     
     let columns = [
@@ -45,12 +46,27 @@ struct PlayerTrackerView: View {
                 VStack{
                     HStack{
                         Button(action: {score += 1
-                            if isSelected{
+                            /*var s = false
+                            for i in $Players.wrappedValue.results{
+                                if(i.isselected == 1
+                                ){
+                                    s = true
+                                }
+                            }
+                            if s{
                                 
                                 self.plmi += 1
                             }
                             else{
                                 self.plmi += 0
+                            }*/
+                            Task {
+                                try await db!.transaction { core in
+                                    try core.query("""
+                                                     UPDATE Player
+                                                       SET plusminus = plusminus+1 WHERE isselected = 1
+                                                     """)
+                                }
                             }
                             
                         }) {
@@ -68,11 +84,13 @@ struct PlayerTrackerView: View {
                             .font(Font.custom("MarkerFelt-Thin", size: 100))
                             .padding()
                         Button(action: {oscore += 1
-                            if isSelected{
-                                
-                                self.plmi += -1
-                            }else{
-                                self.plmi += 0
+                            Task {
+                                try await db!.transaction { core in
+                                    try core.query("""
+                                                     UPDATE Player
+                                                       SET plusminus = plusminus-1 WHERE isselected = 1
+                                                     """)
+                                }
                             }
                             
                         }) {
@@ -91,13 +109,13 @@ struct PlayerTrackerView: View {
                     
                     ScrollView {
                         LazyVGrid(columns: columns, spacing: 16) {
-                            ForEach(Players.results){currentPlayer in
-                                PlayerView(name: currentPlayer.name,
-                                           number: currentPlayer.number, plmi: currentPlayer.plusminus
-                                           
-                                )
+                            if (!reset){
+                                ForEach($Players.results){$currentPlayer in
+                                    PlayerView(player: $currentPlayer
+                                               
+                                    )
+                                }
                             }
-                            
                         }
                         
                     }
@@ -126,7 +144,18 @@ struct PlayerTrackerView: View {
                     
                     Button(action: {score = 0
                         oscore = 0
-                        plmi = 0
+                        reset = true
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            reset = false
+                        }
+                        Task {
+                            try await db!.transaction { core in
+                                try core.query("""
+                                                 UPDATE Player
+                                                   SET plusminus = 0 WHERE 1
+                                                 """)
+                            }
+                        }
                         elapsedTime = 0.0
                     }) {
                         Text("Game End")
