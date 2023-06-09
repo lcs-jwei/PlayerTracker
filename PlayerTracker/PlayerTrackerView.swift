@@ -97,7 +97,7 @@ struct PlayerTrackerView: View {
                             Text("GOAL")
                                 .font(Font.custom("MarkerFelt-Thin", size: 50))
                             
-                                .foregroundColor(.white)
+                                .foregroundColor(.blue)
                                 .padding()
                             
                                 .background(Color.green)
