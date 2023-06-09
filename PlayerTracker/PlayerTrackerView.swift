@@ -127,7 +127,7 @@ struct PlayerTrackerView: View {
                             }, label: {
                                 HStack{
                                     Image(systemName: "person.circle")
-                                    Text("Add/remove Player")
+                                    Text("Add Player")
                                         
                                 }.padding()
                                     .background(Color.blue)
